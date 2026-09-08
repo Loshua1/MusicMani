@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.music.MainController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+
+    <top>
+        <VBox>
+            <HBox>
+                <MenuButton text="File">
+                    <items>
+                        <MenuItem text="Name Project" onAction="#onSetProjectNameButtonClick"/>
+                        <MenuItem text="Import Track" onAction="#onAddTrackMenuButtonClick"/>
+                        <MenuItem text="Export Mix" onAction="#onExportButtonClick"/>
+                    </items>
+                </MenuButton>
+            </HBox>
+            <HBox prefHeight="100" spacing="5">
+                <padding>
+                    <Insets top="25" left="5" bottom="25" right="5"/>
+                </padding>
+                <Button onMouseClicked="#onPauseButtonClick">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-pause" iconSize="20" iconColor="black"/>
+                    </graphic>
+                </Button>
+                <Button onMouseClicked="#onPlayButtonClick">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-play" iconSize="20" iconColor="black"/>
+                    </graphic>
+                </Button>
+            </HBox>
+            <HBox>
+                <HBox minWidth="252" prefHeight="30" style="-fx-border-color: lightgrey; -fx-border-width: 1; -fx-border-style: solid;">
+                    <Text text="Tracks">
+                        <font>
+                            <Font size="17.5"/>
+                        </font>
+                    </Text>
+                </HBox>
+                <ScrollPane fx:id="timelineScrollPane" id="timelineScrollPane" vbarPolicy="NEVER" hbarPolicy="NEVER">
+                    <StackPane fx:id="topStackPane" alignment="TOP_LEFT"/>
+                </ScrollPane>
+            </HBox>
+        </VBox>
+    </top>
+
+
+    <left>
+        <ScrollPane fx:id="leftScrollPane" hbarPolicy="NEVER">
+            <VBox fx:id="allTracksMenu">
+                <HBox fx:id="addTrackMenu" prefWidth="250" prefHeight="140" spacing="5" alignment="CENTER">
+                    <padding>
+                        <Insets top="25" left="25" bottom="25" right="25"/>
+                    </padding>
+                    <Button text="Add Track" fx:id="addTrackMenuButton" onMouseClicked="#onAddTrackMenuButtonClick"/>
+                </HBox>
+                <Line visible="false"/>
+                <Separator/>
+            </VBox>
+        </ScrollPane>
+    </left>
+
+
+    <center>
+        <ScrollPane fx:id="centerScrollPane" fitToWidth="true" hbarPolicy="ALWAYS">
+            <StackPane fx:id="centerStackPane" alignment="TOP_LEFT">
+                <VBox fx:id="allTracksVisual">
+                    <HBox visible="false" prefHeight="140"/>
+                    <Line visible="false"/>
+                    <Separator/>
+                </VBox>
+            </StackPane>
+        </ScrollPane>
+    </center>
+</BorderPane>
